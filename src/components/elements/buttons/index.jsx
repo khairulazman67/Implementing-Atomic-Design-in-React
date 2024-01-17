@@ -1,7 +1,12 @@
 const Button = (props) => {
-    const {children='Login',classname='bg-red-500'} = props
+    const {children='Login',classname='bg-red-500', onClick = ()=>{}, type='button'} = props
+    console.log('onClick' ,typeof(onClick) )
     return(
-        <button className={`h-10 px-6 font-semibold rounded-md ${classname}   text-white`} type="submit">
+        <button 
+            className={`h-10 px-6 font-semibold rounded-md ${classname} hover:bg-gray-700  text-white`} 
+            type={type}
+           onClick={()=>onClick()}
+        >
             {children}
         </button>
     )
