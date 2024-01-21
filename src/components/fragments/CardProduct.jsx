@@ -15,7 +15,7 @@ const Header = (props)=>{
         <a href="" >
             <img 
                 src={image} alt="" 
-                className='p-8' 
+                className='p-8 rounded-t-lg h-60 w-full object-cover' 
             />
         </a>
     )
@@ -26,11 +26,11 @@ const Body = (props)=>{
     return(
         <div className="px-5 pb-5 h-full">
             <a href="">
-                <h5 className="text-xl font-semibold tracking-tight text-white">
-                    {title}
+                <h5 className="text-xl font-semibold tracking-tight text-white hover:text-gray-400">
+                    {title.substr(0,25)} ...
                 </h5>
             </a>
-            <p className="text-m text-white pt-4 text-justify">{children}</p>
+            <p className="text-m text-white pt-4 text-justify">{children.substr(0,100)} ...</p>
         </div>
     )
 }
