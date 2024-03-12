@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { getUsername } from "../services/auth.service";
 
 const useLogin = ()=>{
-    console.log('maso')
     const [username, setUsername] = useState("")
 
     useEffect(()=>{

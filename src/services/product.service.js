@@ -2,7 +2,6 @@ import axios from 'axios'
 
 const getProducts = (callback)=>{
     axios.get('https://fakestoreapi.com/products').then((res)=>{
-        console.log('ress ', res)
         callback(res.data)
     })
     .catch((error)=>{

@@ -5,6 +5,7 @@ const ProfilePage = ()=>{
     return (
         <div>
             <h1>Ini Profile</h1>
+            <h2>{username}</h2>
         </div>
     )
 }
