@@ -3,7 +3,7 @@ import CardProduct from "../components/fragments/CardProduct"
 import Button from '../components/elements/buttons/index';
 import Counter from './counter';
 import { getProducts } from "../services/product.service";
-
+import { useLogin } from "../hooks/useLogin"
 // const products = [
 //     {
 //         id          : 1,
@@ -32,18 +32,17 @@ import { getProducts } from "../services/product.service";
 // ]
 
 const ProductPage = ()=>{
-    const email = localStorage.getItem('email')
-
     const [cart, setCart] = useState([])
     const [totalPrice, setTotalPrice] = useState(0)
+    const username = useLogin()
+
     const handleLogOut =()=>{
-        localStorage.removeItem('email')    
+        localStorage.removeItem('token')    
         localStorage.removeItem('password')
         window.location.href = '/login'
     }
 
     useEffect(()=>{
-        // console.log('ccc ', JSON.parse(localStorage.getItem("cart")))
         setCart(JSON.parse(localStorage.getItem("cart")) || []);
     },[])
 
@@ -96,7 +95,7 @@ const ProductPage = ()=>{
       };
     return(
         <Fragment>
-            <div className="flex  bg-blue-600 h-16 w-fullfont-bold justify-end px-10 text-white items-center">{email} 
+            <div className="flex  bg-blue-600 h-16 w-fullfont-bold justify-end px-10 text-white items-center">{username} 
                 <Button onClick={handleLogOut} classname="ml-5  bg-black">
                     Logout
                 </Button>
@@ -105,7 +104,7 @@ const ProductPage = ()=>{
                 <div className="flex w-3/4 flex-wrap">
                     {products.length>0 && products.map((product) => (
                         <CardProduct key={product.id}>
-                            <CardProduct.Header image={product.image}></CardProduct.Header>
+                            <CardProduct.Header image={product.image} id={product.id}></CardProduct.Header>
                             <CardProduct.Body  title={product.title}> 
                                 {product.description}   
                             </CardProduct.Body>

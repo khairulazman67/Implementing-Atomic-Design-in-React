@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const getProducts = (callback)=>{
     axios.get('https://fakestoreapi.com/products').then((res)=>{
+        console.log('ress ', res)
         callback(res.data)
     })
     .catch((error)=>{
@@ -9,4 +10,13 @@ const getProducts = (callback)=>{
     })
 }
 
-export {getProducts}
+const getDetailProduct = (id,callback)=>{
+    axios.get(`https://fakestoreapi.com/products/${id}`).then((res)=>{
+        callback(res.data)
+    })
+    .catch((error)=>{
+        console.error(error)
+    })
+}
+
+export { getProducts, getDetailProduct }

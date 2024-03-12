@@ -1,29 +1,40 @@
 import InputForm from '../elements/input/Index';
 import Button from '../elements/buttons/index';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { login } from '../../services/auth.service';
+
 
 const FormLogin = () => {
+  const [loginFailed, setLoginFailed] = useState("")
   const handleLogin = (event) => {
     event.preventDefault()
-    const email = event.target.email.value
-    const password = event.target.password.value
 
-    if(email && password){
-      localStorage.setItem('email', event.target.email.value)
-      localStorage.setItem('password', event.target.password.value)
-      window.location.href = '/products'
+      let data = {
+        username : event.target.username.value,
+        password : event.target.password.value
+      }
+      login(data, (status,res)=>{
+        if(status){
+          console.log(res)
+          localStorage.setItem('token',res)
+          window.location.href = "/products"
+        }else{
+          setLoginFailed(res.response.data)
+          console.log(res.response.data)
+        }
+      })
     }
-  };
 
-  const emailRef = useRef(null)
+  const usernameRef = useRef(null)
 
   useEffect(()=>{
-    emailRef.current.focus()
+    usernameRef.current.focus()
   },[])
 
   return(
       <form onSubmit={handleLogin}>
-        <InputForm title="Email" name="email" htmlfor="email" type="email" placeholder="example@mail.com" ref={emailRef}/>
+        {loginFailed && <p className='text-500 text-red-500 mb-2'>{loginFailed}</p>}
+        <InputForm title="Username" name="username" htmlfor="text" type="text" placeholder="Maimunah" ref={usernameRef}/>
         <InputForm title="Password" name="password" htmlfor="password" type="password" placeholder="*****"/>
         <Button
           type="submit" 
