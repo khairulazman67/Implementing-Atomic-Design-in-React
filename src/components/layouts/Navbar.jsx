@@ -21,14 +21,17 @@ const Navbar = () =>{
         window.location.href = '/login'
     }
     return(
-        <div className="flex  bg-blue-600 h-16 w-fullfont-bold justify-end px-10 text-white items-center">
-            {username} 
-            <Button onClick={handleLogOut} classname="ml-5  bg-black">
-                Logout
-            </Button>
-            <div className="flex items-center bg-gray-800 p-2 rounded-md ml-5">
-                {totalCart}
+        <div className="flex  bg-blue-600 h-16 justify-end px-10 text-white ">
+            <div className="flex  w-fullfont-bold items-center mr-7">
+                {username} 
+                <Button onClick={handleLogOut} classname="ml-5  bg-black">
+                    Logout
+                </Button>
+                <div className="flex items-center bg-gray-800 p-2 rounded-md ml-5">
+                    {totalCart}
+                </div>
             </div>
+           
         </div>
     )
 }

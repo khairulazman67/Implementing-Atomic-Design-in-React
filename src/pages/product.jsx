@@ -22,7 +22,7 @@ const ProductPage = ()=>{
       };
     return(
         <Fragment>
-           
+                 <Navbar/>
             <div className="flex justify-center py-6">
                 <div className="flex w-3/4 flex-wrap">
                     {products.length>0 && products.map((product) => (
